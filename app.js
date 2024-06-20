@@ -17,14 +17,14 @@ const __dirname = import.meta.dirname;
 const app = express();
 mongoose.set('strictQuery', false);
 
-const dev_db_url =
-  'mongodb+srv://Ben_Long:7skFOfMMxEQz6mwz@cluster0.xp4dg26.mongodb.net/local_library?retryWrites=true&w=majority&appName=Cluster0';
-const mongoDB = process.env.MONGODB_URI || dev_db_url;
+const mongoDB = process.env.DATABASE_URL;
 
 main().catch((err) => console.log(err));
+
 async function main() {
   await mongoose.connect(mongoDB);
 }
+
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
